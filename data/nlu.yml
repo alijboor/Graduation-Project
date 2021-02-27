@@ -1,5 +1,4 @@
 version: "2.0"
-
 nlu:
 - intent: greet
   examples: |
@@ -8,65 +7,71 @@ nlu:
     - hi
     - hello there
     - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
-
+    - هلو
+    - مرحبا
+    - صبحو
+    - ع العافية
+    - صباح الخير
+    - مراحب
+    - السلام
+    - السلام عليكم
+    - سلامو عليكو
+    - الو
+    - مسا الخير
+    - مساء الخير
+    - الله يمسيك
+    - يسعد صباحك
+    - هاي
 - intent: goodbye
   examples: |
-    - good afternoon
-    - cu
-    - good by
-    - cee you later
-    - good night
+    - باي
+    - سلام
+    - يلا روح
+    - بااي
     - bye
     - goodbye
-    - have a nice day
-    - see you around
+    - سلام عليكم
+    - بالسلامة
     - bye bye
-    - see you later
-
+    - بشوفك بعدين
+    - بحكي معك بعدين
+    - كش
+    - روح
 - intent: affirm
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-
+    - يس
+    - اه
+    - أكيد
+    - طبعا
+    - بالزبط
+    - اة
+    - نعم
+    - صحيح
+    - ترو
+    - اه طبعا
 - intent: deny
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
-
+    - لا
+    - لاا
+    - مش هيك
+    - مظنش
+    - ما اظن
+    - ما بعرف
+    - لأ
+    - نو
+    - نو نو
+    - كلا
 - intent: mood_great
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-
+    - جميل
+    - حلو
+    - مذهل
+    - كويس
+    - طقع
+    - الحمد لله تمام
+    - انا بخير
+    - انا كويس
+    - انا بكل خير
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -83,10 +88,39 @@ nlu:
     - extremly sad
     - so saad
     - so sad
-
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+    - انت انسان ؟
+    - انت حقيقي
+    - انت روبوت
+    - انت بوت
+    - انت كمبيوتر
+    - انت عن جد
+- intent: tawjihi_major_questions
+  examples: |
+    - انا علمي
+    - انا توجيهي علمي
+    - انا توجيهي ادبي
+    - انا ادبي
+    - انا تجاري
+    - انا صناعي
+    - انا توجيهي تجاري
+    - انا توجيهي صناعي
+    - ادبي
+- intent: tawjihi_marks
+  examples: |
+    - جبت 88
+    - معدلي 90
+    - 91.8
+    - 75.3
+    - 89.5
+    - معدلي 78.4
+    - جبت 94.8
+    - انا كان معدلي 94.6
+- intent: bot_condition
+  examples: |
+    - كيفك شو اخبارك

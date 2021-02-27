@@ -1,34 +1,59 @@
-version: "2.0"
-
+version: '2.0'
+session_config:
+  session_expiration_time: 120
+  carry_over_slots_to_new_session: true
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-
+- tawjihi_marks
+- goodbye
+- greet
+- tawjihi_major_questions
+- bot_challenge
+- bot_condition
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- tawjihi_questions
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-
+  - text: Hey! How are you?
+  - text: وعليكم السلام ورحمة الله وبركاته
+  - text: أهلا وسهلا
+  - text: صباح النور
+  - text: صباح العنبر
+  - text: وعليكم السلام
+  - text: يا هلا
+  - text: مسا النور
+  - text: مسا الأنوار
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
   utter_did_that_help:
-  - text: "Did that help you?"
-
+  - text: Did that help you?
   utter_happy:
-  - text: "Great, carry on!"
-
+  - text: Great, carry on!
   utter_goodbye:
-  - text: "Bye"
-
+  - text: Bye
+  - text: مع السلامة
+  - text: أراك لاحقا
+  - text: 'سلام '
+  - text: إلى اللقاء
+  - text: لنا لقاء آخر
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  - text: I am a bot, powered by my owners.
+  - text: انا كمبيوتر بس بقدر أحكي معك كإني انسان
+  - text: انا انسان :)
+  - text: انا نص كمبيوتر ونص انسان
+  utter_tawjihi:
+  - text: كم معدلك ؟
+  - text: ' كم جبت بالتوجيهي؟'
+  utter_university_majors:
+  - text: اذا معدلك فوق ال90, فبإمكانك تدخل تخصص الطب
+  - text: اذا معدلك فوق ال70 واقل من 90 فإمكانك تسجل بتخصص علم الحاسوب او هندسة الحاسوب او تكنولوجيا المعلومات
+actions:
+- my_condition
+- utter_goodbye
+- utter_greet
+- utter_iamabot
+- utter_tawjihi
+- utter_university_majors
