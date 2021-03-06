@@ -14,6 +14,8 @@ intents:
 - mood_great
 - mood_unhappy
 - tawjihi_questions
+- tawjihi_major_questions
+- tawjihi_marks
 responses:
   utter_greet:
   - text: Hey! How are you?
