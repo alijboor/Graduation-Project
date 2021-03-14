@@ -2,52 +2,13 @@ version: "2.0"
 
 stories:
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
 
-- story: sad path 2
+- story: registration_question
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - intent: arabic_greet
+  - action: utter_arabic_greet
+  - intent: registration
+  - action: utter_registration
 
-- story: tawjihi_quest
-  steps:
-  - intent: tawjihi_major_questions
-  - action: utter_tawjihi
-  - intent: tawjihi_marks
-  - action: utter_university_majors
 
-- story: interactive_story_1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: tawjihi_major_questions
-  - action: utter_tawjihi
-  - intent: tawjihi_marks
-  - action: utter_university_majors
-  - intent: bot_challenge
-  - action: utter_iamabot
-  - intent: bot_condition
-  - action: my_condition
-  - intent: goodbye
-  - action: utter_goodbye
-  - action: action_restart

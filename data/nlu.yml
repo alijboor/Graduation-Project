@@ -7,36 +7,45 @@ nlu:
     - hi
     - hello there
     - good morning
+- intent: arabic_greet
+  examples: |
     - هلو
     - مرحبا
-    - صبحو
-    - ع العافية
-    - صباح الخير
     - مراحب
+    - هاي
+    - الو
+    - ع العافية
     - السلام
     - السلام عليكم
     - سلامو عليكو
-    - الو
+- intent: arabic_morning_greet
+  examples: |
+    - يسعد صباحك
+    - صباح الخير
+    - صبحو
+- intent: arabic_night_greet
+  examples: |
     - مسا الخير
     - مساء الخير
     - الله يمسيك
-    - يسعد صباحك
-    - هاي
-- intent: goodbye
+    - مسا النور
+- intent: arabic_goodbye
   examples: |
     - باي
     - سلام
     - يلا روح
     - بااي
-    - bye
-    - goodbye
     - سلام عليكم
     - بالسلامة
-    - bye bye
     - بشوفك بعدين
     - بحكي معك بعدين
     - كش
     - روح
+- intent: goodbye
+  examples: |
+    - bye bye
+    - bye
+    - goodbye
 - intent: affirm
   examples: |
     - يس
@@ -54,40 +63,10 @@ nlu:
     - لا
     - لاا
     - مش هيك
-    - مظنش
-    - ما اظن
     - ما بعرف
     - لأ
     - نو
-    - نو نو
     - كلا
-- intent: mood_great
-  examples: |
-    - جميل
-    - حلو
-    - مذهل
-    - كويس
-    - طقع
-    - الحمد لله تمام
-    - انا بخير
-    - انا كويس
-    - انا بكل خير
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -100,7 +79,19 @@ nlu:
     - انت بوت
     - انت كمبيوتر
     - انت عن جد
-- intent: tawjihi_major_questions
+- intent: thanks
+  examples: |
+    - شكرا
+    - مشكور
+    - طيب
+    - تمام
+- intent: registration
+  examples: |
+    - كيف بدي أسجل
+    - شو شروط التسجيل
+    - بدي أسجل بالجامعة
+    - كيف دسجل بالجامعة
+- intent: tawjihi_branch
   examples: |
     - انا علمي
     - انا توجيهي علمي
@@ -120,7 +111,51 @@ nlu:
     - 89.5
     - معدلي 78.4
     - جبت 94.8
+    - كان معدلي 69.1
     - انا كان معدلي 94.6
 - intent: bot_condition
   examples: |
     - كيفك شو اخبارك
+    - كيفك
+    - كيف الحال
+- intent: admission_policy
+  examples: |
+    - شو سياسة القبول
+    - كيف بدي اعرف اذا قبلوني
+    - انا دفعت كيف بدي اعرف اذا قبلوني بالجامعة
+    - انا معي البجروت كيف بدي اعرف اذا ممكن يقبلوني
+    - انا توجيهي الأردن
+    - توجيهي مش فلسطيني
+    - توجيهي اسرائيلي
+- intent: colleges
+  examples: |
+    - شو الكليات الموجودة؟
+    - ايش هن كليات الجامعة ؟
+    - في كلية طب عندكم
+    - موجودة كلية الهندسة ؟
+- intent: programs
+  examples: |
+    - شو البرامج اللي بتوفرها الجامعة
+    - شو برامج الكليات
+- intent: parallel_study
+  examples: |
+    - شو هي دراسة الموازي
+    - بدي أدخل موازي
+    - شو التخصصات يلي فيهن موازي
+    - في موازي بالجامعة
+- intent: graduation_plans
+  examples: |
+    - شو خطة التخصص
+    - بدي خطة التخصص
+- intent: placement_tests
+  examples: |
+    - شو امتحانات المستوى الموجودة؟
+    - في امتحانات قبل ما أدخل الجامعة؟
+    - امتحان المستوى
+- intent: installments_and_credit_hours
+  examples: |
+    - كم قيمة القسط
+    - كم بدي أدفع
+    - شو قيمة القسط
+    - كم سعر ساعة التخصصات
+    - شو سعر الساعة

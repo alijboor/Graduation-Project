@@ -1,61 +1,136 @@
 version: '2.0'
+config:
+  store_entities_as_slots: true
 session_config:
-  session_expiration_time: 120
+  session_expiration_time: 3600
   carry_over_slots_to_new_session: true
 intents:
-- tawjihi_marks
-- goodbye
-- greet
-- tawjihi_major_questions
-- bot_challenge
-- bot_condition
-- affirm
-- deny
-- mood_great
-- mood_unhappy
-- tawjihi_questions
-- tawjihi_major_questions
-- tawjihi_marks
+- registration:
+    use_entities: true
+- thanks:
+    use_entities: true
+- deny:
+    use_entities: true
+- arabic_greet:
+    use_entities: true
+- greet:
+    use_entities: true
+- arabic_morning_greet:
+    use_entities: true
+- arabic_night_greet:
+    use_entities: true
+- arabic_goodbye:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- tawjihi_branch:
+    use_entities: true
+- tawjihi_marks:
+    use_entities: true
+- bot_condition:
+    use_entities: true
+- admission_policy:
+    use_entities: true
+- colleges:
+    use_entities: true
+- programs:
+    use_entities: true
+- parallel_study:
+    use_entities: true
+- graduation_plans:
+    use_entities: true
+- tawjihi_major_questions:
+    use_entities: true
+- placement_tests:
+    use_entities: true
+- installments_and_credit_hours:
+    use_entities: true
+entities: []
+slots: {}
 responses:
   utter_greet:
-  - text: Hey! How are you?
+  - text: Hey!
+  - text: Hello
+  utter_arabic_greet:
   - text: وعليكم السلام ورحمة الله وبركاته
   - text: أهلا وسهلا
-  - text: صباح النور
-  - text: صباح العنبر
   - text: وعليكم السلام
   - text: يا هلا
+  utter_arabic_morning_greet:
+  - text: صباح النور
+  - text: صباح العنبر
+  utter_arabic_night_greet:
   - text: مسا النور
   - text: مسا الأنوار
   utter_cheer_up:
-  - text: 'Here is something to cheer you up:'
-    image: https://i.imgur.com/nGF1K8f.jpg
-  utter_did_that_help:
-  - text: Did that help you?
-  utter_happy:
-  - text: Great, carry on!
-  utter_goodbye:
-  - text: Bye
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_thanks:
+  - text: في اشي كمان بقدر اساعد فيه ؟
+  - text: في استفسارات ثانية ؟
+  utter_arabic_goodbye:
   - text: مع السلامة
   - text: أراك لاحقا
   - text: 'سلام '
   - text: إلى اللقاء
   - text: لنا لقاء آخر
+  utter_goodbye:
+  - text: Bye
+  - text: see you soon
+  - text: c u soon
   utter_iamabot:
   - text: I am a bot, powered by my owners.
   - text: انا كمبيوتر بس بقدر أحكي معك كإني انسان
   - text: انا انسان :)
   - text: انا نص كمبيوتر ونص انسان
-  utter_tawjihi:
+  utter_tawjihi_branch:
   - text: كم معدلك ؟
   - text: ' كم جبت بالتوجيهي؟'
-  utter_university_majors:
-  - text: اذا معدلك فوق ال90, فبإمكانك تدخل تخصص الطب
-  - text: اذا معدلك فوق ال70 واقل من 90 فإمكانك تسجل بتخصص علم الحاسوب او هندسة الحاسوب او تكنولوجيا المعلومات
+  utter_admission_policy:
+  - text: يقبل الطلبة الجدد الناجحون في التوجيهي او ما يعادلها في مطلع العام الدراسي على أساس المعدل التنافسي ضمن المقاعد المخصصة لكل تخصص وحسب شروط مجلس العمداء في بداية كل عام أكاديمي. ويتم قبول طلبة الثانوية العامة من الدول العربية او الاجنبية حسب تعليمات الوزارة بهذا الخصوص. يتم قبول الطلبة الحاصلين على شهادة البجروت , حيث يتم احتساب المعدل حسب المواد التعليمية وعدد الوحدات لتحديد التخصصات التي يمكن للطالب الالتحاق بها. ويجب على الطالب أن يزود عمادة القبول والتسجيل نسخة مترجمة عن شهادة البجروت ومصدقة من الوزارة المعنية في الداخل ومن الخارجية والتعليم العالي الفلسطيني
+  utter_university_colleges:
+  - text: |2-
+
+      لمزيد من المعلومات, يرجى التواصل مع عمادة القبول والتسجيلتتضمن جامعة بوليتكنك فلسطين كل من كليات الدراسات العيلاوكلية الطب وعلوم الصحة, وكلية الهندسة, وكليةتكنولوجيا المعلومات وهندسة الحاسوب, وكلية العلوم التطبيقية, وكلية العلوم الإدارية ونظم المعلومات,وكلية المهن التطبيقية
+  utter_university_programs:
+  - text: توفر الجامعة كل من برامج الماجستير والبكالوريوس والدبلوم في كلياتها
+  utter_university_parallel_study:
+  - text: الدراسة الموازية هي دراسة أحد التخصصات المطروحة بإحدى الكليات رغم عدم الحصول على الحد الأدنى من المعدل العام لكل تخصص. معظم التخصصات في كليات الجامعة بتسمح للدراسة الموازية ما عدا تخصصات كلية المهن التطبيقية (الدبلوم) وتخصص الطب البشري المشترك وتخصص العمارة الداخلية والديكور
+  utter_graduation_plans:
+  - text: آسف, إلى حد اللحظة لا أمتلك سوى خطط كل من تخصص علم الحاسوب, وتكنولوجيا المعلومات, وهندسة الحاسوب. هل تريد أن ترى الخطط ؟
+  utter_placement_tests:
+  - text: قبل التحاق كل طالب بتخصصه, يتوجب على الطلبة اجتياز بعض امتحانات تحديد المستوى, وهي امتحان المستوى في اللغة الانجليزية. وامتحان المهارات للطلبة الراغبين بدراسة الهندسة المعمارية. ويتم إعلام الطلبة بموعد الامتحانات بعد قبولهم
+  utter_installments_and_credit_hours:
+  - text: تختلف قيمة القسط الأول بين التخصصات, مع العلم أن القسط الأول يكون دائما أكثر من باقي الأقساط في غالب الأحوال. يرجى اختيار التخصص المراد الاستفسار عن قسطه وسعر ساعته
+  utter_registration:
+  - text: |-
+      للتسجيل بالجامعة:
+            يجب شراء رزمة طلب الالتحاق الالكتروني برسوم مقدارها 200 شيكل من خلال فروع البنوك التالية 
+       البنك الإسلامي الفلسطيني وبنك فلسطين بفروعهما. 
+            بنك الإسكان بفروعه في محافظة الخليل (الخليل, حلحول,الظاهرية,يطا) 
+            الدائرة المالية في مقر الجامعة - واد الهرية 
+           ويتم تعبئة الطلب إلكترونياً عبر صفحة الانترنت الخاصة على الرابط التالي 'http://admission.ppu.edu'
 actions:
-- my_condition
+- utter_admission_policy
+- utter_arabic_goodbye
+- utter_arabic_greet
+- utter_arabic_morning_greet
+- utter_arabic_night_greet
 - utter_goodbye
+- utter_graduation_plans
 - utter_greet
 - utter_iamabot
-- utter_tawjihi
-- utter_university_majors
+- utter_installments_and_credit_hours
+- utter_placement_tests
+- utter_registration
+- utter_tawjihi_branch
+- utter_thanks
+- utter_university_colleges
+- utter_university_parallel_study
+- utter_university_programs
+forms: {}
+e2e_actions: []
