@@ -32,7 +32,7 @@ class ActionHelloWorld(Action):
             cursor.execute("SELECT * FROM colleges")
             print("now should be executed")
             for row in cursor:
-                #dispatcher.utter_message([row.id + " " + row.college_name + "\n"])
+                dispatcher.utter_message([row.id + " " + row.college_name + "\n"])
                 dispatcher.utter_message(text=str(row))
                 print(row) 
             cursor.close()
