@@ -32,3 +32,11 @@ stories:
   steps:
   - intent: colleges
   - action: action_hello_world
+- story: Story from Conversation ID f804923992464fb38e1a0cd631120c2a
+  steps:
+  - intent: colleges
+  - action: action_hello_world
+  - intent: colleges
+  - action: action_hello_world
+  - intent: colleges
+  - action: action_hello_world
