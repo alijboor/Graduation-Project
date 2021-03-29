@@ -53,9 +53,20 @@ intents:
     use_entities: true
 - restart:
     use_entities: true
-entities:
-- name
-slots: {}
+- choose_college:
+    use_entities: true
+entities: []
+slots:
+  colleges:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  major:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
 responses:
   utter_greet:
   - text: Hey!
@@ -136,7 +147,8 @@ actions:
 - utter_university_colleges
 - utter_university_parallel_study
 - utter_university_programs
-- action_hello_world
+- action_colleges
 - utter_welcome
+- action_college_major
 forms: {}
 e2e_actions: []

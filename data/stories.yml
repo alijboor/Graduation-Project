@@ -28,7 +28,14 @@ stories:
   - intent: thanks
   - intent: deny
   - action: action_restart
-- story: Story from Conversation ID b56cff6b5f0b4e9da60d8626a1ad7681
+
+- story: ask a colleges
   steps:
   - intent: colleges
-  - action: action_hello_world
+  - action: action_colleges
+
+
+- story: ask a collegeMajor
+  steps:
+  - intent: choose_college
+  - action: action_college_major
