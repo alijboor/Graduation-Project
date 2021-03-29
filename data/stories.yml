@@ -11,11 +11,9 @@ stories:
   - intent: arabic_night_greet
   - action: utter_arabic_night_greet
   - intent: registration
-  - action: action_restart
+  - action: utter_registration
   - intent: registration
   - action: utter_registration
-  - intent: restart
-  - action: action_restart
 - story: Story from Conversation ID 345
   steps:
   - intent: admission_policy
