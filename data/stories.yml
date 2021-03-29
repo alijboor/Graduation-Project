@@ -11,11 +11,9 @@ stories:
   - intent: arabic_night_greet
   - action: utter_arabic_night_greet
   - intent: registration
-  - action: action_restart
+  - action: utter_registration
   - intent: registration
   - action: utter_registration
-  - intent: restart
-  - action: action_restart
 - story: Story from Conversation ID 345
   steps:
   - intent: admission_policy
@@ -28,15 +26,14 @@ stories:
   - intent: thanks
   - intent: deny
   - action: action_restart
-- story: Story from Conversation ID b56cff6b5f0b4e9da60d8626a1ad7681
+
+- story: ask a colleges
   steps:
   - intent: colleges
-  - action: action_hello_world
-- story: Story from Conversation ID f804923992464fb38e1a0cd631120c2a
+  - action: action_colleges
+
+
+- story: ask a collegeMajor
   steps:
-  - intent: colleges
-  - action: action_hello_world
-  - intent: colleges
-  - action: action_hello_world
-  - intent: colleges
-  - action: action_hello_world
+  - intent: choose_college
+  - action: action_college_major
