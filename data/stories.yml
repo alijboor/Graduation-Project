@@ -37,3 +37,13 @@ stories:
   steps:
   - intent: choose_college
   - action: action_college_major
+
+# - story: ask expected major
+#   steps:
+#   - intent: expected_major
+#   - action: validate_expected_major_form
+#   - action: ask_tawjihi_branch_and_mark
+  
+#   - intent_location_specific{"location":"value"}
+#   - slot{"location":"value"}
+#   - action_find_by_location

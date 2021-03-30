@@ -55,6 +55,10 @@ intents:
     use_entities: true
 - choose_college:
     use_entities: true
+- expected_major:
+    use_entities: true
+- choose_major:
+    use_entities: true
 entities: []
 slots:
   colleges:
@@ -67,6 +71,23 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: true
+  branch_of_tawjihi:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  mark_of_branch:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    max_value: 99.9
+    min_value: 50.0
+  requested_slot:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
 responses:
   utter_greet:
   - text: Hey!
@@ -129,6 +150,8 @@ responses:
   utter_welcome:
   - text: أهلا
   - text: تفضل
+  utter_expected_major_slot_values:
+  - text: التخصصات المتاحة لفرع التوجيهي {branch_of_tawjihi} ومعدل {mark_of_branch} هي
 actions:
 - utter_admission_policy
 - utter_arabic_goodbye
@@ -150,5 +173,13 @@ actions:
 - action_colleges
 - utter_welcome
 - action_college_major
-forms: {}
+- action_expected_major_slot_values
+- ask_tawjihi_branch_and_mark
+- validate_expected_major_form
+forms:
+  expected_major_form:
+    branch_of_tawjihi:
+    - type: from_text
+    mark_of_branch:
+    - type: from_text
 e2e_actions: []
