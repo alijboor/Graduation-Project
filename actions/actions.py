@@ -131,7 +131,23 @@ class ActionSubmitExpectedMajor(Action):
             mycursor = conn.cursor()
             branch_tawjihi=tracker.get_slot("branch_of_tawjihi")
             mark_branch=tracker.get_slot("mark_of_branch")
+
+    #     SELECT major_name FROM majors WHERE id = (
+    #     SELECT major_id FROM major_branch_tawjihi WHERE branch_tawjihi_id = (
+    #     SELECT id FROM tawjihi_branches WHERE name LIKE "علمي"
+    # ))
+            
             query="""SELECT major_name FROM majors WHERE tawjihi_branch=%s AND min_gpa <=%s   """
+            # كويري عشان يحول اسم الفرع لرقم
+            query1='SELECT id FROM tawjihi_branches WHERE name LIKE %s'
+            # كويري عشان يجيب كل الأي دي للتخصصات يلي بقبلن الفرع اللي حولتو لرقم من الكويري1
+            query2 ='SELECT major_id FROM major_branch_tawjihi WHERE branch_tawjihi_id'
+            # كويري عشان تجيب أسماء التخصصات عن طريق الأي دي من الكويري2
+            # طبعا الاشي يلي بعد الآند بكون جاي من الكويري2 بس مش عارف كيف دجيبو
+            query3='SELECT major_name FROM majors WHERE min_gpa <= %s AND major_id = major_branch_tawjihi.major_id'
+
+            #عدل هاي برظو وسوي اللي بدك اياه فيها
+
             mycursor.execute(query,(branch_tawjihi,mark_branch,))
             result= mycursor.fetchall()
             print(result)
