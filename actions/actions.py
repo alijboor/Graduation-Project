@@ -131,22 +131,18 @@ class ActionSubmitExpectedMajor(Action):
             mycursor = conn.cursor()
             branch_tawjihi=tracker.get_slot("branch_of_tawjihi")
             mark_branch=tracker.get_slot("mark_of_branch")
-
-            print("\n\n"+branch_tawjihi+"\n\n"+mark_branch+"\n\n"+"before query execution\n")
-            query="""SELECT major_name FROM chatbot_db.majors WHERE `tawjihi_branch`=%s AND `min_gpa` <=%s   """
-            mycursor.execute(query,(branch_tawjihi,mark_branch))
+            query="""SELECT major_name FROM majors WHERE tawjihi_branch=%s AND min_gpa <=%s   """
+            mycursor.execute(query,(branch_tawjihi,mark_branch,))
             result= mycursor.fetchall()
-            print("after query and before loop")
-            print(text=(result))
-            # تأكد من الكويري ومن الفور لوب
-            #لحد الان الوضع تمام, بس الاشياء اللي تحت مش متأكد منها
+            print(result)
             for major in result:
                 Majors_array.append(str(major))
             dispatcher.utter_message(
-                text=str(Majors_array)
+                text="التخصصات التي يمكنك التسجيل بها حسب معدلك و فرعك التوجيهي هي التخصصات التالية ", array=Majors_array
             )
             mycursor.close()
             conn.close()
-        except:
-            dispatcher.utter_message("Failed to get expected majors")
+        except mysql.connector.Error as error:
+            print("parameterized query failed {}".format(error))
+            dispatcher.utter_message("Failed")
         return[]
