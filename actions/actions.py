@@ -131,34 +131,56 @@ class ActionSubmitExpectedMajor(Action):
             mycursor = conn.cursor()
             branch_tawjihi=tracker.get_slot("branch_of_tawjihi")
             mark_branch=tracker.get_slot("mark_of_branch")
-
-    #     SELECT major_name FROM majors WHERE id = (
-    #     SELECT major_id FROM major_branch_tawjihi WHERE branch_tawjihi_id = (
-    #     SELECT id FROM tawjihi_branches WHERE name LIKE "علمي"
-    # ))
             
-            query="""SELECT major_name FROM majors WHERE tawjihi_branch=%s AND min_gpa <=%s   """
-            # كويري عشان يحول اسم الفرع لرقم
-            query1='SELECT id FROM tawjihi_branches WHERE name LIKE %s'
-            # كويري عشان يجيب كل الأي دي للتخصصات يلي بقبلن الفرع اللي حولتو لرقم من الكويري1
-            query2 ='SELECT major_id FROM major_branch_tawjihi WHERE branch_tawjihi_id'
-            # كويري عشان تجيب أسماء التخصصات عن طريق الأي دي من الكويري2
-            # طبعا الاشي يلي بعد الآند بكون جاي من الكويري2 بس مش عارف كيف دجيبو
-            query3='SELECT major_name FROM majors WHERE min_gpa <= %s AND major_id = major_branch_tawjihi.major_id'
-
-            #عدل هاي برظو وسوي اللي بدك اياه فيها
-
+            query="""SELECT major_name FROM majors JOIN tawjihibranch ON tawjihibranch.major_id = majors.id AND tawjihibranch.branch = %s OR tawjihibranch.branch = 'جميع الفروع' WHERE min_gpa <=%s   """
             mycursor.execute(query,(branch_tawjihi,mark_branch,))
             result= mycursor.fetchall()
-            print(result)
             for major in result:
-                Majors_array.append(str(major))
+                fill_slot = '{"major" : "' + re.sub("[(',;)]", "",str(major)) + '"}'
+                Majors_array.append({
+                    "title": re.sub("[(',;)]", "", str(major)),
+                    "payload": f"/choose_major{fill_slot}"
+                })
+                # Majors_array.append(str(major))
             dispatcher.utter_message(
-                text="التخصصات التي يمكنك التسجيل بها حسب معدلك و فرعك التوجيهي هي التخصصات التالية ", array=Majors_array
-            )
+                text="التخصصات التي يمكنك التسجيل بها حسب معدلك و فرعك التوجيهي هي التخصصات التالية ", buttons=Majors_array)
             mycursor.close()
             conn.close()
         except mysql.connector.Error as error:
             print("parameterized query failed {}".format(error))
             dispatcher.utter_message("Failed")
         return[]
+
+class MajorDeatil(Action):
+    def name(self) -> Text:
+        return "action_major_details"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        try:
+            conn = mysql.connector.connect(host="localhost",
+                                           port="3306",
+                                           user="root",
+                                           password="",
+                                           database="chatbot_db")
+            mycursors = conn.cursor()
+            major_need = tracker.get_slot("major")
+            mycursors.execute("""SELECT * FROM majors where major_name = %s""",(major_need, ))
+            result = mycursors.fetchall()
+            final_result = " "
+
+            # for d in result:
+            #     fill_slot = '{"major" : "' + re.sub("[(',;)]", "",
+            #                                         str(d)) + '"}'
+            #     buttonss.append({
+            #         "title": re.sub("[(',;)]", "", str(d)),
+            #         "payload": f"/choose_major{fill_slot}"
+            #     })text=f"{final_result}"
+            dispatcher.utter_message(json_message = result)
+            mycursors.close()
+            conn.close()
+
+        except mysql.connector.Error as error:
+            print("parameterized query failed {}".format(error))
+            dispatcher.utter_message("Failed")
+        return []

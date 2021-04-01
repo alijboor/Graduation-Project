@@ -38,6 +38,10 @@ stories:
   - intent: choose_college
   - action: action_college_major
 
+- story: ask a Major detail
+  steps:
+  - intent: choose_major
+  - action: action_major_details
 # - story: ask expected major
 #   steps:
 #   - intent: expected_major

@@ -176,6 +176,7 @@ actions:
 - action_expected_major_slot_values
 - ask_tawjihi_branch_and_mark
 - validate_expected_major_form
+- action_major_details
 forms:
   expected_major_form:
     branch_of_tawjihi:
