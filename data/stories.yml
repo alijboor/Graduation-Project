@@ -33,7 +33,7 @@ stories:
   - action: action_colleges
 
 
-- story: ask a collegeMajor
+- story: ask a college Major
   steps:
   - intent: choose_college
   - action: action_college_major
@@ -42,12 +42,4 @@ stories:
   steps:
   - intent: choose_major
   - action: action_major_details
-# - story: ask expected major
-#   steps:
-#   - intent: expected_major
-#   - action: validate_expected_major_form
-#   - action: ask_tawjihi_branch_and_mark
-  
-#   - intent_location_specific{"location":"value"}
-#   - slot{"location":"value"}
-#   - action_find_by_location
+

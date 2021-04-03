@@ -59,7 +59,9 @@ intents:
     use_entities: true
 - choose_major:
     use_entities: true
-entities: []
+entities:
+- branch_of_tawjihi
+- mark_of_tawjihi
 slots:
   colleges:
     type: rasa.shared.core.slots.TextSlot
@@ -84,7 +86,7 @@ slots:
     max_value: 99.9
     min_value: 50.0
   requested_slot:
-    type: rasa.shared.core.slots.UnfeaturizedSlot
+    type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
     influence_conversation: false
@@ -96,19 +98,18 @@ responses:
   - text: وعليكم السلام ورحمة الله وبركاته
   - text: أهلا وسهلا
   - text: وعليكم السلام
-  - text: يا هلا
   utter_arabic_morning_greet:
   - text: صباح النور
-  - text: صباح العنبر
+  - text: صباح الخير
   utter_arabic_night_greet:
-  - text: مسا النور
-  - text: مسا الأنوار
+  - text: مساء النور
+  - text: مساء الخير
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
     text: 'Here is something to cheer you up:'
   utter_thanks:
-  - text: في اشي كمان بقدر اساعد فيه ؟
-  - text: في استفسارات ثانية ؟
+  - text: هل يمكنني المساعدة بأمر آخر؟
+  - text: لديك استفسارات أُخرى ؟
   utter_arabic_goodbye:
   - text: مع السلامة
   - text: أراك لاحقا
@@ -121,12 +122,19 @@ responses:
   - text: c u soon
   utter_iamabot:
   - text: I am a bot, powered by my owners.
-  - text: انا كمبيوتر بس بقدر أحكي معك كإني انسان
+  - text: انا برنامج وأستطيع التحدث معك كإنني انسان
   - text: انا انسان :)
-  - text: انا نص كمبيوتر ونص انسان
+  - text: انا نصف كمبيوتر ونصف انسان
   utter_tawjihi_branch:
-  - text: كم معدلك ؟
-  - text: ' كم جبت بالتوجيهي؟'
+  - text: ما هو فرعك في الثانوية العامة؟
+  - text: ما فرع التوجيهي الخاص بك؟
+  - text: في أي فرع كنت بالثانوية العامة؟
+  utter_tawjihi_mark:
+  - text: كم معدلك؟
+  - text: ما هي علامتك بالثانوية العامة؟
+  - text: ما هو معدلك في الثانوية العامة؟
+  - text: أدخل معدلك بالثانوية العامة
+  - text: أدخل معدلك بالتوجيهي
   utter_admission_policy:
   - text: يقبل الطلبة الجدد الناجحون في التوجيهي او ما يعادلها في مطلع العام الدراسي على أساس المعدل التنافسي ضمن المقاعد المخصصة لكل تخصص وحسب شروط مجلس العمداء في بداية كل عام أكاديمي. ويتم قبول طلبة الثانوية العامة من الدول العربية او الاجنبية حسب تعليمات الوزارة بهذا الخصوص. يتم قبول الطلبة الحاصلين على شهادة البجروت , حيث يتم احتساب المعدل حسب المواد التعليمية وعدد الوحدات لتحديد التخصصات التي يمكن للطالب الالتحاق بها. ويجب على الطالب أن يزود عمادة القبول والتسجيل نسخة مترجمة عن شهادة البجروت ومصدقة من الوزارة المعنية في الداخل ومن الخارجية والتعليم العالي الفلسطيني
   utter_university_programs:
@@ -150,8 +158,6 @@ responses:
   utter_welcome:
   - text: أهلا
   - text: تفضل
-  utter_expected_major_slot_values:
-  - text: التخصصات المتاحة لفرع التوجيهي {branch_of_tawjihi} ومعدل {mark_of_branch} هي
 actions:
 - utter_admission_policy
 - utter_arabic_goodbye
@@ -177,6 +183,7 @@ actions:
 - ask_tawjihi_branch_and_mark
 - validate_expected_major_form
 - action_major_details
+- action_tawjihi_branch_and_mark
 forms:
   expected_major_form:
     branch_of_tawjihi:
