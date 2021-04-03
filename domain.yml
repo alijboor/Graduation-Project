@@ -59,6 +59,8 @@ intents:
     use_entities: true
 - choose_major:
     use_entities: true
+- misspeled:
+    use_entities: true
 entities:
 - branch_of_tawjihi
 - mark_of_tawjihi
@@ -125,16 +127,6 @@ responses:
   - text: انا برنامج وأستطيع التحدث معك كإنني انسان
   - text: انا انسان :)
   - text: انا نصف كمبيوتر ونصف انسان
-  utter_tawjihi_branch:
-  - text: ما هو فرعك في الثانوية العامة؟
-  - text: ما فرع التوجيهي الخاص بك؟
-  - text: في أي فرع كنت بالثانوية العامة؟
-  utter_tawjihi_mark:
-  - text: كم معدلك؟
-  - text: ما هي علامتك بالثانوية العامة؟
-  - text: ما هو معدلك في الثانوية العامة؟
-  - text: أدخل معدلك بالثانوية العامة
-  - text: أدخل معدلك بالتوجيهي
   utter_admission_policy:
   - text: يقبل الطلبة الجدد الناجحون في التوجيهي او ما يعادلها في مطلع العام الدراسي على أساس المعدل التنافسي ضمن المقاعد المخصصة لكل تخصص وحسب شروط مجلس العمداء في بداية كل عام أكاديمي. ويتم قبول طلبة الثانوية العامة من الدول العربية او الاجنبية حسب تعليمات الوزارة بهذا الخصوص. يتم قبول الطلبة الحاصلين على شهادة البجروت , حيث يتم احتساب المعدل حسب المواد التعليمية وعدد الوحدات لتحديد التخصصات التي يمكن للطالب الالتحاق بها. ويجب على الطالب أن يزود عمادة القبول والتسجيل نسخة مترجمة عن شهادة البجروت ومصدقة من الوزارة المعنية في الداخل ومن الخارجية والتعليم العالي الفلسطيني
   utter_university_programs:
@@ -171,7 +163,6 @@ actions:
 - utter_installments_and_credit_hours
 - utter_placement_tests
 - utter_registration
-- utter_tawjihi_branch
 - utter_thanks
 - utter_university_colleges
 - utter_university_parallel_study
@@ -180,7 +171,6 @@ actions:
 - utter_welcome
 - action_college_major
 - action_expected_major_slot_values
-- ask_tawjihi_branch_and_mark
 - validate_expected_major_form
 - action_major_details
 - action_tawjihi_branch_and_mark

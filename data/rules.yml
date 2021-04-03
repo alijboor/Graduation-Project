@@ -15,9 +15,6 @@ rules:
 - rule: Activate expected major form
   steps:
   - intent: expected_major
-  - action: utter_tawjihi_branch
-  - action: validate_expected_major_form
-  - action: utter_tawjihi_mark
   - action: expected_major_form
   - active_loop: expected_major_form
 - rule: Submit expected major form

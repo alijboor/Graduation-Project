@@ -97,9 +97,9 @@ class ValidateExpectedMajorForm(FormValidationAction):
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
+        slot_value = tracker.get_slot("branch_of_tawjihi")
         if not slot_value:
-            dispatcher.utter_message("أدخل فرع الثانوية ")
+            dispatcher.utter_message("أدخل فرعك في الثانوية العامة ")
             return {
                 "branch_of_tawjihi": None,
             }
@@ -113,14 +113,14 @@ class ValidateExpectedMajorForm(FormValidationAction):
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
+        slot_value = tracker.get_slot("mark_of_branch")
         if not slot_value:
+            dispatcher.utter_message("أدخل معدلك")
             return {
                 "mark_of_branch": None,
                 
             }
         else:
-            dispatcher.utter_message("أدخل معدلك")
             return {"mark_of_branch": slot_value}
 
 class ActionSubmitExpectedMajor(Action):
@@ -153,8 +153,7 @@ class ActionSubmitExpectedMajor(Action):
                     "payload": f"/choose_major{fill_slot}"
                 })
                 
-            dispatcher.utter_message(
-                text="التخصصات التي يمكنك التسجيل بها حسب معدلك و فرعك التوجيهي هي التخصصات التالية ", buttons=Majors_array)
+            dispatcher.utter_message(text="التخصصات التي يمكنك التسجيل بها حسب معدلك و فرعك التوجيهي هي التخصصات التالية ", buttons=Majors_array)
             mycursor.close()
             conn.close()
         except mysql.connector.Error as error:
@@ -177,24 +176,10 @@ class MajorDeatil(Action):
             mycursors = conn.cursor()
             major_selected = tracker.get_slot("major")
             mycursors.execute("""SELECT * FROM majors where major_name = %s""",(major_selected, ))
-            
             result = mycursors.fetchall()
-            print(result)
-            final_result = " "
-
-            # for d in result:
-            #     fill_slot = '{"major" : "' + re.sub("[(',;)]", "",
-            #                                         str(d)) + '"}'
-            #     buttonss.append({
-            #         "title": re.sub("[(',;)]", "", str(d)),
-            #         "payload": f"/choose_major{fill_slot}"
-            #     })text=f"{final_result}"
             dispatcher.utter_message(json_message = result)
-            
-
             mycursors.close()
             conn.close()
-
         except mysql.connector.Error as error:
             print("parameterized query failed {}".format(error))
             dispatcher.utter_message("Failed")
