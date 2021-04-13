@@ -87,24 +87,27 @@ slots:
     influence_conversation: true
     max_value: 99.9
     min_value: 50.0
+  program:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
   requested_slot:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
     influence_conversation: false
+
+
 responses:
   utter_greet:
   - text: Hey!
   - text: Hello
   utter_arabic_greet:
-  - text: وعليكم السلام ورحمة الله وبركاته
   - text: أهلا وسهلا
-  - text: وعليكم السلام
   utter_arabic_morning_greet:
-  - text: صباح النور
   - text: صباح الخير
   utter_arabic_night_greet:
-  - text: مساء النور
   - text: مساء الخير
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
@@ -150,6 +153,17 @@ responses:
   utter_welcome:
   - text: أهلا
   - text: تفضل
+  utter_ask_program:
+  - buttons:
+    - payload: بكالوريوس
+      title: بكالوريوس
+    - payload: دبلوم
+      title: دبلوم
+    text: ما هو البرنامج الذي ترغب بالالتحاق به في جامعة بوليتكنك فلسطين؟
+  utter_ask_branch_of_tawjihi:
+  - text: أدخل فرعك في الثانوية العامة
+  utter_ask_mark_of_branch:
+  - text: أدخل معدلك في الثانوية العامة
 actions:
 - utter_admission_policy
 - utter_arabic_goodbye
@@ -170,14 +184,17 @@ actions:
 - action_colleges
 - utter_welcome
 - action_college_major
-- action_expected_major_slot_values
 - validate_expected_major_form
 - action_major_details
 - action_tawjihi_branch_and_mark
+
 forms:
   expected_major_form:
     branch_of_tawjihi:
     - type: from_text
     mark_of_branch:
     - type: from_text
+    program:
+    - type: from_text
+
 e2e_actions: []

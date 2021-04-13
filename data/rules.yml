@@ -4,19 +4,23 @@ rules:
   steps:
   - intent: goodbye
   - action: utter_goodbye
+  
 - rule: Say 'I am a bot' anytime the user challenges
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
 - rule: Say policy anytime the user says policy
   steps:
   - intent: admission_policy
   - action: utter_admission_policy
+
 - rule: Activate expected major form
   steps:
   - intent: expected_major
   - action: expected_major_form
   - active_loop: expected_major_form
+
 - rule: Submit expected major form
   condition:
   - active_loop: expected_major_form

@@ -27,23 +27,23 @@ class ActionColleges(Action):
             mycursor = conn.cursor()
             mycursor.execute("SELECT college_name FROM colleges")
             result = mycursor.fetchall()
-            buttonss = []
+            buttons = []
             for d in result:
                 Colleges_array.append(re.sub("[(',;)]", "", str(d)))
                 fill_slot = '{"colleges" : "' + re.sub("[(',;)]", "",
                                                        str(d)) + '"}'
-                buttonss.append({
+                buttons.append({
                     "title": re.sub("[(',;)]", "", str(d)),
                     "payload": f"/choose_college{fill_slot}"
                 })
             dispatcher.utter_message(
                 text=
                 "هذه هي الكليات المتوفرة في جامعة بوليتكنك فلسطين: \n اذا كنت ترغب بمعرفة المزيد عن كلية معينة اختر من خلال الازرار التالية.",
-                buttons=buttonss)
+                buttons=buttons)
             mycursor.close()
             conn.close()
         except:
-            dispatcher.utter_message("Failed to get colleges names")
+            dispatcher.utter_message(text="Failed to get colleges names")
         return []
 
 
@@ -83,7 +83,7 @@ class CollegeMajor(Action):
 
         except mysql.connector.Error as error:
             print("parameterized query failed {}".format(error))
-            dispatcher.utter_message("Failed")
+            dispatcher.utter_message(text="Failed")
         return []
 
 
@@ -99,12 +99,9 @@ class ValidateExpectedMajorForm(FormValidationAction):
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         slot_value = tracker.get_slot("branch_of_tawjihi")
         if not slot_value:
-            dispatcher.utter_message("أدخل فرعك في الثانوية العامة ")
-            return {
-                "branch_of_tawjihi": None,
-            }
+            dispatcher.utter_message(text="أدخل فرعك في الثانوية العامة ")
+            return {"branch_of_tawjihi": None,}
         else:
-            # dispatcher.utter_message("أدخل فرع الثانوية ")
             return {"branch_of_tawjihi": slot_value}
 
     def validate_mark_of_branch(
@@ -113,22 +110,33 @@ class ValidateExpectedMajorForm(FormValidationAction):
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        slot_value = tracker.get_slot("mark_of_branch")
-        if not slot_value:
-            dispatcher.utter_message("أدخل معدلك")
-            return {
-                "mark_of_branch": None,
-                
-            }
+        slot_value = int(tracker.get_slot("mark_of_branch"))
+        if slot_value < 50 :
+            if slot_value > 100 :
+                dispatcher.utter_message(text=" أعدإدخال معدلك بشكل صحيح رجاءً")
+                return {"mark_of_branch": None,}
         else:
             return {"mark_of_branch": slot_value}
+
+    def validate_program(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        slot_value = tracker.get_slot("program")
+        if not slot_value:
+            return {
+                "program": None,
+            }
+        else:
+            return {"program": slot_value}
 
 class ActionSubmitExpectedMajor(Action):
     def name(self) -> Text:
         return "action_tawjihi_branch_and_mark"
     
     def run(self, dispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-       
         try:
             conn = mysql.connector.connect(host="localhost",
                                            port="3306",
@@ -138,27 +146,27 @@ class ActionSubmitExpectedMajor(Action):
             mycursor = conn.cursor()
             branch_tawjihi=tracker.get_slot("branch_of_tawjihi")
             mark_branch=tracker.get_slot("mark_of_branch")
+            prog=tracker.get_slot("program")
             
-            query="""SELECT major_name FROM majors 
-            JOIN tawjihibranch ON tawjihibranch.major_id = majors.id 
-            AND tawjihibranch.branch = %s OR tawjihibranch.branch = 'جميع الفروع' 
-            WHERE min_gpa <=%s   """
-            mycursor.execute(query,(branch_tawjihi,mark_branch,))
+            query="""SELECT major_name FROM majors JOIN tawjihibranch ON tawjihibranch.major_id = majors.id AND (tawjihibranch.branch = %s OR tawjihibranch.branch = 'جميع الفروع') WHERE min_gpa <=%s  AND program = %s """
+            mycursor.execute(query,(branch_tawjihi,mark_branch,prog,))
             result= mycursor.fetchall()
-            
-            for major in result:
-                fill_slot = '{"major" : "' + re.sub("[(',;)]", "",str(major)) + '"}'
-                Majors_array.append({
-                    "title": re.sub("[(',;)]", "", str(major)),
-                    "payload": f"/choose_major{fill_slot}"
-                })
-                
-            dispatcher.utter_message(text="التخصصات التي يمكنك التسجيل بها حسب معدلك و فرعك التوجيهي هي التخصصات التالية ", buttons=Majors_array)
+            if result:
+                for major in result:
+                    fill_slot = '{"major" : "' + re.sub("[(',;)]", "",str(major)) + '"}'
+                    Majors_array.append({
+                        "title": re.sub("[(',;)]", "", str(major)),
+                        "payload": f"/choose_major{fill_slot}"
+                    })
+                dispatcher.utter_message(text="التخصصات التي يمكنك التسجيل بها حسب معدلك و فرعك التوجيهي هي التخصصات التالية ", buttons=Majors_array)
+            else:
+                dispatcher.utter_message(text=f"نأسف لعدم استيفائك شروط القبول لاي من التخصصات التابعة لبرنامج {prog} ")
+
             mycursor.close()
             conn.close()
         except mysql.connector.Error as error:
             print("parameterized query failed {}".format(error))
-            dispatcher.utter_message("حدث خطأ أثناء احضار التخصصات")
+            dispatcher.utter_message(text="متأسف لقد حدث خطأ أثناء احضار التخصصات ")
         return[]
 
 class MajorDeatil(Action):
@@ -182,5 +190,5 @@ class MajorDeatil(Action):
             conn.close()
         except mysql.connector.Error as error:
             print("parameterized query failed {}".format(error))
-            dispatcher.utter_message("Failed")
+            dispatcher.utter_message(text="Failed")
         return []
