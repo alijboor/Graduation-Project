@@ -30,3 +30,9 @@ rules:
   - slot_was_set:
     - requested_slot: null
   - action: action_tawjihi_branch_and_mark
+
+- rule: Trigger pajrot
+  steps:
+  - intent: pajrot
+  - action: utter_pajrot
+

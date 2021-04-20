@@ -6,6 +6,7 @@ stories:
   - action: utter_arabic_greet
   - intent: registration
   - action: utter_registration
+
 - story: Story from Conversation ID 1ddbd29b8
   steps:
   - intent: arabic_night_greet
@@ -14,16 +15,25 @@ stories:
   - action: utter_registration
   - intent: registration
   - action: utter_registration
+  - intent: arabic_goodbye
+  - action: utter_arabic_goodbye
+  - intent: affirm
+
+
+
 - story: Story from Conversation ID 345
   steps:
   - intent: admission_policy
   - action: utter_admission_policy
   - intent: installments_and_credit_hours
   - action: utter_installments_and_credit_hours
+
 - story: Story from Conversation ID 897bb643a4b045c1920c2339e21e5674
-  steps:
-  - action: utter_thanks
+  steps:  
+  - intent: arabic_morning_greet
+  - action: utter_arabic_morning_greet
   - intent: thanks
+  - action: utter_thanks
   - intent: deny
   - action: action_restart
 
@@ -31,6 +41,8 @@ stories:
   steps:
   - intent: colleges
   - action: action_colleges
+  - intent: arabic_goodbye
+  - action: utter_arabic_goodbye
 
 
 - story: ask a college Major
@@ -43,3 +55,47 @@ stories:
   - intent: choose_major
   - action: action_major_details
 
+- story: general chat
+  steps:
+  - intent: arabic_greet
+  - intent: pajrot/enrollment_Conditions
+  - action: utter_pajrot
+  - intent: pajrot/enrollment_Conditions
+  - action: utter_pajrot
+  - intent: transfer_to_ppu
+  - action: utter_transfer_to_ppu
+  - intent: restart
+  - action: action_restart
+  - intent: arabic_greet
+  - intent: registration
+  - action: utter_registration
+  - intent: pajrot/calculate_mark_and_major
+  - action: utter_pajrot
+  - intent: pajrot/enrollment_Conditions
+  - action: utter_pajrot
+  - intent: registration
+  - action: utter_registration
+  - intent: placement_tests
+  - action: utter_placement_tests
+  - intent: dploma_tahel
+  - action: utter_dploma_tahel
+  - intent: refund_system_for_new_student
+  - action: utter_refund_system_for_new_student
+  - intent: Losing_a_seat
+  - action: utter_Losing_a_seat
+  - intent: ppu_grants
+  - action: utter_ppu_grants
+  - intent: language_study
+  - action: utter_language_study
+  - intent: system_study
+  - action: utter_system_study
+  - intent: filling_the_application
+  - action: utter_filling_the_application
+  - intent: required_documents
+  - action: utter_required_documents
+  - intent: parallel_study
+  - action: utter_parallel_study
+  - intent: bot_condition
+  - action: utter_bot_condition
+  - intent: university_programs
+  - action: utter_university_programs
