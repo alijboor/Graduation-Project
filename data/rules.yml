@@ -4,23 +4,19 @@ rules:
   steps:
   - intent: goodbye
   - action: utter_goodbye
-  
 - rule: Say 'I am a bot' anytime the user challenges
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
-
 - rule: Say policy anytime the user says policy
   steps:
   - intent: admission_policy
   - action: utter_admission_policy
-
 - rule: Activate expected major form
   steps:
   - intent: expected_major
   - action: expected_major_form
   - active_loop: expected_major_form
-
 - rule: Submit expected major form
   condition:
   - active_loop: expected_major_form
@@ -30,9 +26,12 @@ rules:
   - slot_was_set:
     - requested_slot: null
   - action: action_tawjihi_branch_and_mark
-
 - rule: Trigger pajrot
   steps:
   - intent: pajrot
   - action: utter_pajrot
-
+- rule: stop when detect abuse words
+  steps:
+  - intent: abuse_words
+  - action: utter_abuse_words
+  - action: action_restart
