@@ -93,3 +93,46 @@ stories:
   steps:
   - intent: arabic_greet
   - action: utter_arabic_greet
+- story: Story from Conversation ID c8564fa18702403a9a06ee064753bf56
+  steps:
+  - intent: filling_the_application
+  - action: utter_admission_policy
+  - intent: thanks
+  - action: utter_thanks
+  - intent: affirm
+  - intent: required_documents
+  - action: utter_required_documents
+  - intent: thanks
+  - action: utter_thanks
+  - intent: affirm
+  - intent: admission_policy
+  - action: utter_admission_policy
+  - intent: thanks
+  - action: utter_thanks
+  - intent: affirm
+  - intent: transfer_to_ppu
+  - action: utter_transfer_to_ppu
+  - intent: thanks
+  - action: utter_thanks
+  - intent: affirm
+  - intent: system_study
+  - action: utter_system_study
+  - intent: system_study
+  - action: utter_system_study
+  - intent: thanks
+  - action: utter_thanks
+  - intent: affirm
+  - intent: Losing_a_seat
+  - action: utter_Losing_a_seat
+  - intent: thanks
+  - action: utter_thanks
+  - intent: affirm
+  - intent: Losing_a_seat
+  - action: utter_Losing_a_seat
+  - intent: thanks
+  - action: utter_thanks
+  - intent: affirm
+  - intent: nlu_fallback
+  - action: action_default_fallback
+  - intent: thanks
+  - action: utter_thanks
