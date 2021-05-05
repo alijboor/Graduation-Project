@@ -1,6 +1,5 @@
 from typing import Any, Text, Dict, List
 from rasa_sdk.events import AllSlotsReset, SlotSet, EventType, UserUtteranceReverted, SessionStarted, ActionExecuted
-#from rasa_sdk.types import DomainDict
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormValidationAction
@@ -17,7 +16,7 @@ class ActionSessionStart(Action):
         return "action_session_start"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(Text="اهلا و سهلا في مساعد التسجيل لــ جامعـة بوليتكنك فلسـطـيـن")
+        dispatcher.utter_message(Text="اهلا و سهلا في مساعد التسجيل لجامعـة بوليتكنك فلسـطـيـن")
         return [SessionStarted(), ActionExecuted("action_listen")]
 
         

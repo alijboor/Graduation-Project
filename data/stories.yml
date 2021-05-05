@@ -6,7 +6,6 @@ stories:
   - action: utter_arabic_greet
   - intent: registration
   - action: utter_registration
-
 - story: Story from Conversation ID 1ddbd29b8
   steps:
   - intent: arabic_night_greet
@@ -18,43 +17,34 @@ stories:
   - intent: arabic_goodbye
   - action: utter_arabic_goodbye
   - intent: affirm
-
-
-
 - story: Story from Conversation ID 345
   steps:
   - intent: admission_policy
   - action: utter_admission_policy
   - intent: installments_and_credit_hours
   - action: utter_installments_and_credit_hours
-
 - story: Story from Conversation ID 897bb643a4b045c1920c2339e21e5674
-  steps:  
+  steps:
   - intent: arabic_morning_greet
   - action: utter_arabic_morning_greet
   - intent: thanks
   - action: utter_thanks
   - intent: deny
   - action: action_restart
-
 - story: ask a colleges
   steps:
   - intent: colleges
   - action: action_colleges
   - intent: arabic_goodbye
   - action: utter_arabic_goodbye
-
-
 - story: ask a college Major
   steps:
   - intent: choose_college
   - action: action_college_major
-
 - story: ask a Major detail
   steps:
   - intent: choose_major
   - action: action_major_details
-
 - story: general chat
   steps:
   - intent: arabic_greet
@@ -99,3 +89,7 @@ stories:
   - action: utter_bot_condition
   - intent: university_programs
   - action: utter_university_programs
+- story: Story from Conversation ID 7f897ecb74894a9597e9bccfe9c8244b
+  steps:
+  - intent: arabic_greet
+  - action: utter_arabic_greet
