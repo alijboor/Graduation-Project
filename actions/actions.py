@@ -10,6 +10,11 @@ import re
 
 Colleges_array = []
 Majors_array = []
+conn = mysql.connector.connect(host="localhost",
+                                           port="3306",
+                                           user="root",
+                                           password="",
+                                           database="chatbot_db")
 
 class ActionSessionStart(Action):
     def name(self) -> Text:
@@ -27,11 +32,7 @@ class ActionColleges(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-            conn = mysql.connector.connect(host="localhost",
-                                           port="3306",
-                                           user="root",
-                                           password="",
-                                           database="chatbot_db")
+             
             mycursor = conn.cursor()
             mycursor.execute("SELECT college_name FROM colleges")
             result = mycursor.fetchall()
@@ -62,11 +63,7 @@ class CollegeMajor(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-            conn = mysql.connector.connect(host="localhost",
-                                           port="3306",
-                                           user="root",
-                                           password="",
-                                           database="chatbot_db")
+            
             mycursors = conn.cursor()
             College = tracker.get_slot("colleges")
             index_of_college = Colleges_array.index(College) + 1
@@ -148,11 +145,7 @@ class ActionSubmitExpectedMajor(Action):
     
     def run(self, dispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-            conn = mysql.connector.connect(host="localhost",
-                                           port="3306",
-                                           user="root",
-                                           password="",
-                                           database="chatbot_db")
+             
             mycursor = conn.cursor()
             branch_tawjihi=tracker.get_slot("branch_of_tawjihi")
             mark_branch=tracker.get_slot("mark_of_branch")
@@ -186,11 +179,7 @@ class MajorDeatil(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-            conn = mysql.connector.connect(host="localhost",
-                                           port="3306",
-                                           user="root",
-                                           password="",
-                                           database="chatbot_db")
+             
             mycursors = conn.cursor()
             major_selected = tracker.get_slot("major")
             mycursors.execute("""SELECT * FROM majors where major_name = %s""",(major_selected, ))
