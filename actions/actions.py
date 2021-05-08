@@ -10,14 +10,18 @@ import re
 
 Colleges_array = []
 Majors_array = []
+conn = mysql.connector.connect(host="localhost",
+                                           port="3306",
+                                           user="root",
+                                           password="",
+                                           database="chatbot_db")
 
 class ActionSessionStart(Action):
     def name(self) -> Text:
         return "action_session_start"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(Text="اهلا و سهلا في مساعد التسجيل لجامعـة بوليتكنك فلسـطـيـن")
-        return [SessionStarted(), ActionExecuted("action_listen")]
+        return [SessionStarted(), ActionExecuted("action_welcome")]
 
         
 class ActionColleges(Action):
@@ -27,11 +31,7 @@ class ActionColleges(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-            conn = mysql.connector.connect(host="localhost",
-                                           port="3306",
-                                           user="root",
-                                           password="",
-                                           database="chatbot_db")
+             
             mycursor = conn.cursor()
             mycursor.execute("SELECT college_name FROM colleges")
             result = mycursor.fetchall()
@@ -62,11 +62,7 @@ class CollegeMajor(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-            conn = mysql.connector.connect(host="localhost",
-                                           port="3306",
-                                           user="root",
-                                           password="",
-                                           database="chatbot_db")
+            
             mycursors = conn.cursor()
             College = tracker.get_slot("colleges")
             index_of_college = Colleges_array.index(College) + 1
@@ -148,11 +144,7 @@ class ActionSubmitExpectedMajor(Action):
     
     def run(self, dispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-            conn = mysql.connector.connect(host="localhost",
-                                           port="3306",
-                                           user="root",
-                                           password="",
-                                           database="chatbot_db")
+             
             mycursor = conn.cursor()
             branch_tawjihi=tracker.get_slot("branch_of_tawjihi")
             mark_branch=tracker.get_slot("mark_of_branch")
@@ -186,16 +178,12 @@ class MajorDeatil(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-            conn = mysql.connector.connect(host="localhost",
-                                           port="3306",
-                                           user="root",
-                                           password="",
-                                           database="chatbot_db")
+             
             mycursors = conn.cursor()
             major_selected = tracker.get_slot("major")
             mycursors.execute("""SELECT * FROM majors where major_name = %s""",(major_selected, ))
             result = list(mycursors.fetchall())
-            dispatcher.utter_message(text = f"تخصص {result[0][2]} : يبلغ سعر الساعة لهذا التخصص {result[0][3]} ديناراً و بإجمالي {result[0][4]} ساعة موزعة على {result[0][5]} سنوات, و يبلغ الحد الادنى لمعدلات القبول لهذا التخصص {result[0][6]} في فروع الثانوية التالية : علمي و صناعي")
+            dispatcher.utter_message(text = f"تخصص {result[0][2]} : يبلغ سعر الساعة لهذا التخصص {result[0][3]} ديناراً و بإجمالي {result[0][4]} ساعة موزعة على {result[0][5]} سنوات, و يبلغ الحد الادنى لمعدلات القبول لهذا التخصص {result[0][6]} , ويبلغ القسط الأول لهذا التخصص  {result[0][8]} دينار وذلك للطلبة الذين استوفوا شروط التخصص. أما دراسة هذا التخصص على نظام الموازي فيكون سعر الساعة يساوي سعر الساعة الأصلي مضروبا ب2 وكذلك الأمر بالنسبة لقسط الفصل الأول أيضاً")
             mycursors.close()
             conn.close()
         except mysql.connector.Error as error:

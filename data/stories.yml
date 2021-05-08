@@ -45,50 +45,52 @@ stories:
   steps:
   - intent: choose_major
   - action: action_major_details
-- story: general chat
-  steps:
-  - intent: arabic_greet
-  - intent: pajrot/enrollment_Conditions
-  - action: utter_pajrot
-  - intent: pajrot/enrollment_Conditions
-  - action: utter_pajrot
-  - intent: transfer_to_ppu
-  - action: utter_transfer_to_ppu
-  - intent: restart
-  - action: action_restart
-  - intent: arabic_greet
-  - intent: registration
-  - action: utter_registration
-  - intent: pajrot/calculate_mark_and_major
-  - action: utter_pajrot
-  - intent: pajrot/enrollment_Conditions
-  - action: utter_pajrot
-  - intent: registration
-  - action: utter_registration
-  - intent: placement_tests
-  - action: utter_placement_tests
-  - intent: dploma_tahel
-  - action: utter_dploma_tahel
-  - intent: refund_system_for_new_student
-  - action: utter_refund_system_for_new_student
-  - intent: Losing_a_seat
-  - action: utter_Losing_a_seat
-  - intent: ppu_grants
-  - action: utter_ppu_grants
-  - intent: language_study
-  - action: utter_language_study
-  - intent: system_study
-  - action: utter_system_study
-  - intent: filling_the_application
-  - action: utter_filling_the_application
-  - intent: required_documents
-  - action: utter_required_documents
-  - intent: parallel_study
-  - action: utter_parallel_study
-  - intent: bot_condition
-  - action: utter_bot_condition
-  - intent: university_programs
-  - action: utter_university_programs
+# - story: general chat
+#   steps:
+#   - intent: arabic_greet
+#   - action: utter_arabic_greet
+#   - intent: pajrot/enrollment_Conditions
+#   - action: utter_pajrot/enrollment_Conditions
+#   - intent: pajrot/enrollment_Conditions
+#   - action: utter_pajrot/enrollment_Conditions
+#   - intent: transfer_to_ppu
+#   - action: utter_transfer_to_ppu
+#   - intent: restart
+#   - action: action_restart
+#   - intent: arabic_greet
+#   - intent: registration
+#   - action: utter_registration
+#   - intent: pajrot/calculate_mark_and_major
+#   - action: utter_pajrot
+#   - intent: pajrot/enrollment_Conditions
+#   - action: utter_pajrot
+#   - intent: registration
+#   - action: utter_registration
+#   - intent: placement_tests
+#   - action: utter_placement_tests
+#   - intent: dploma_tahel
+#   - action: utter_dploma_tahel
+#   - intent: refund_system_for_new_student
+#   - action: utter_refund_system_for_new_student
+#   - intent: Losing_a_seat
+#   - action: utter_Losing_a_seat
+#   - intent: ppu_grants
+#   - action: utter_ppu_grants
+#   - intent: language_study
+#   - action: utter_language_study
+#   - intent: system_study
+#   - action: utter_system_study
+#   - intent: filling_the_application
+#   - action: utter_filling_the_application
+#   - intent: required_documents
+#   - action: utter_required_documents
+#   - intent: parallel_study
+#   - action: utter_parallel_study
+#   - intent: bot_condition
+#   - action: utter_bot_condition
+#   - intent: university_programs
+#   - action: utter_university_programs
+
 - story: Story from Conversation ID 7f897ecb74894a9597e9bccfe9c8244b
   steps:
   - intent: arabic_greet
