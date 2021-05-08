@@ -321,10 +321,11 @@ actions:
 - validate_expected_major_form
 forms:
   expected_major_form:
-    branch_of_tawjihi:
-    - type: from_text
-    mark_of_branch:
-    - type: from_text
-    program:
-    - type: from_text
+    required_slots:
+      branch_of_tawjihi:
+      - type: from_text
+      mark_of_branch:
+      - type: from_text
+      program:
+      - type: from_text
 e2e_actions: []
