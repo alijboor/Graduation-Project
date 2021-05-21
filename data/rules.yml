@@ -26,10 +26,19 @@ rules:
   - slot_was_set:
     - requested_slot: null
   - action: action_tawjihi_branch_and_mark
-- rule: Trigger pajrot
+- rule: major plan form
   steps:
-  - intent: pajrot
-  - action: utter_pajrot
+  - intent: graduation_plans
+  - action: utter_graduation_plans
+
+- rule: Trigger pajrot conditions
+  steps:
+  - intent: pajrot_enrollment_Conditions
+  - action: utter_pajrot_enrollment_Conditions
+- rule: Trigger pajrot mark and major
+  steps:
+  - intent: pajrot_calculate_mark_and_major
+  - action: utter_pajrot_calculate_mark_and_major
 - rule: stop when detect abuse words
   steps:
   - intent: abuse_words

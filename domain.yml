@@ -5,6 +5,8 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: false
 intents:
+- graduation_plans:
+    use_entities: true
 - required_documents:
     use_entities: true
 - arabic_greet:
@@ -39,8 +41,6 @@ intents:
     use_entities: true
 - parallel_study:
     use_entities: true
-- graduation_plans:
-    use_entities: true
 - tawjihi_major_questions:
     use_entities: true
 - placement_tests:
@@ -56,8 +56,6 @@ intents:
 - choose_major:
     use_entities: true
 - filling_the_application:
-    use_entities: true
-- pajrot:
     use_entities: true
 - transfer_to_ppu:
     use_entities: true
@@ -79,7 +77,14 @@ intents:
     use_entities: true
 - nlu_fallback:
     use_entities: true
-entities: []
+- pajrot_calculate_mark_and_major:
+    use_entities: true
+- pajrot_enrollment_Conditions:
+    use_entities: true
+- tawjihi_branch:
+    use_entities: true
+entities:
+- major
 slots:
   colleges:
     type: rasa.shared.core.slots.TextSlot
@@ -156,8 +161,6 @@ responses:
   - text: توفر الجامعة كل من برامج الماجستير والبكالوريوس والدبلوم و دبلوم التأهيل التربوي في كلياتها
   utter_parallel_study:
   - text: الدراسة الموازية هي دراسة أحد التخصصات المطروحة بإحدى الكليات رغم عدم الحصول على الحد الأدنى من المعدل العام لكل تخصص. معظم التخصصات في كليات الجامعةتسمح للدراسة الموازية ما عدا تخصصات كلية المهن التطبيقية (الدبلوم) وتخصص الطب البشري المشترك وتخصص العمارة الداخلية والديكور
-  utter_graduation_plans:
-  - text: آسف, إلى حد اللحظة لا أمتلك سوى خطط كل من تخصص علم الحاسوب, وتكنولوجيا المعلومات, وهندسة الحاسوب. هل تريد أن ترى الخطط ؟
   utter_placement_tests:
   - text: قبل التحاق كل طالب بتخصصه و بعد اتمام اجراءات حجز, يتوجب على الطلبة اجتياز بعض امتحانات تحديد المستوى, وهي امتحان المستوى في اللغة الانجليزية. وامتحان المهارات للطلبة الراغبين بدراسة الهندسة المعمارية. ويتم إعلام الطلبة بموعد الامتحانات بعد قبولهم من خلال ايميلهم الجامعي و القوائم التي تنشر.
   utter_installments_and_credit_hours:
@@ -207,7 +210,7 @@ responses:
       .في حال هدم توفر نسخة بالإنجليزية لكشف الثانوية العامة، قم بكتابة اسمك بالإنجليزية طبقاً لما هو وارد في جواز السفر
       .تأكد من حفظ البيانات بعد تعبئة الحقول المطلوبة، لتتمكن من العودة إلى الطلب والتعديل عليه
       بعد إتمام تعبئة الطلب، قم بتثبيته بشكل نهائي (من خلال زر التثبيت).
-  utter_pajrot/enrollment_Conditions:
+  utter_pajrot_enrollment_Conditions:
   - text: |-
       يشترط على حامل شهادة البجروت والذي يرغب بالالتحاق بأحد البرامج الدراسية في جامعة بوليتكنك فلسطين ما يلي
       1.	.أن يكون من الناطقين باللغة العربية كلغة أمّ
@@ -215,7 +218,7 @@ responses:
       3.	.أن يحمل استحقاق يقيد باجتياز امتحان البجروت بنجاح (زكاي أو زكئيت)
       4.	.أن يكون حاصل على 20 وحدة تعليمية محد أدنى بنجاح
       5.	.أن يحضر النسخة الاصلية ونسخة مترجمة عن كشف النتائج من جهة معتمدة
-  utter_pajrot/calculate_mark_and_major:
+  utter_pajrot_calculate_mark_and_major:
   - text: |-
       1.	يمكن اعتبار الطالب الحاصل على شهادة البجروت ضمن الفرع العلمي إذا حقق أحد الشرطين التاليين
           .أ.	إما أن يكون ناجحا في (9) وحدات علمية كحد أدنى منها (4) وحدات في مادة الرياضيات
@@ -285,9 +288,17 @@ responses:
   - text: أعتذر, لا يمكن أن أسمح بهذه العبارات
   action_welcome:
   - text: اهلا و سهلا في مساعد التسجيل لجامعـة بوليتكنك فلسـطـيـن
+  utter_graduation_plans:
+  - text: |-
+      :يمكنك الإطلاع على خطط التخصصات كل حسب كليته وفق الروابط التالية
+      الدليل الشامل للطالب في جامعة بوليتكنك فلسطين ' https://www.ppu.edu/p/ar/about/guide '
+      الدليل الخاص بخطط التخصصات التابعة لكلية الهندسة ' https://cet.ppu.edu/ar/Documents ''
+      الدليل الخاص بكلية العلوم الإدارية ونظم المعلومات ' https://casi.ppu.edu/ar/rules-and-regulations ''
+      الدليل الخاص بكلية العلوم التطبيقية وتخصصاتها  ' https://cas.ppu.edu/ar/documents '
 actions:
 - action_college_major
 - action_colleges
+- utter_graduation_plans
 - action_major_details
 - action_tawjihi_branch_and_mark
 - action_welcome
@@ -300,13 +311,13 @@ actions:
 - utter_arabic_night_greet
 - utter_dploma_tahel
 - utter_goodbye
-- utter_graduation_plans
 - utter_greet
 - utter_iamabot
 - utter_installments_and_credit_hours
 - utter_language_study
-- utter_pajrot
 - utter_parallel_study
+- utter_pajrot_calculate_mark_and_major
+- utter_pajrot_enrollment_Conditions
 - utter_placement_tests
 - utter_ppu_grants
 - utter_refund_system_for_new_student

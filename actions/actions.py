@@ -10,11 +10,6 @@ import re
 
 Colleges_array = []
 Majors_array = []
-conn = mysql.connector.connect(host="localhost",
-                                           port="3306",
-                                           user="root",
-                                           password="",
-                                           database="chatbot_db")
 
 class ActionSessionStart(Action):
     def name(self) -> Text:
@@ -31,7 +26,12 @@ class ActionColleges(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-             
+            conn = mysql.connector.connect(host="localhost",
+                                           port="3306",
+                                           user="root",
+                                           password="",
+                                           database="chatbot_db")
+
             mycursor = conn.cursor()
             mycursor.execute("SELECT college_name FROM colleges")
             result = mycursor.fetchall()
@@ -51,7 +51,7 @@ class ActionColleges(Action):
             mycursor.close()
             conn.close()
         except:
-            dispatcher.utter_message(text="Failed to get colleges names")
+            dispatcher.utter_message(text="حدث خطأ أثناء احضار الكليات, يرجى زيارة الرابط التالي: https://ppu.edu/p/ar/Colleges-Deanships")
         return []
 
 
@@ -62,6 +62,11 @@ class CollegeMajor(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
+            conn = mysql.connector.connect(host="localhost",
+                                           port="3306",
+                                           user="root",
+                                           password="",
+                                           database="chatbot_db")
             
             mycursors = conn.cursor()
             College = tracker.get_slot("colleges")
@@ -87,7 +92,7 @@ class CollegeMajor(Action):
 
         except mysql.connector.Error as error:
             print("parameterized query failed {}".format(error))
-            dispatcher.utter_message(text="Failed")
+            dispatcher.utter_message(text="حدث خطأ أثناء احضار الكليات, يرجى زيارة الرابط التالي: https://ppu.edu/p/ar/Colleges-Deanships")
         return []
 
 
@@ -144,7 +149,11 @@ class ActionSubmitExpectedMajor(Action):
     
     def run(self, dispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-             
+            conn = mysql.connector.connect(host="localhost",
+                                           port="3306",
+                                           user="root",
+                                           password="",
+                                           database="chatbot_db")
             mycursor = conn.cursor()
             branch_tawjihi=tracker.get_slot("branch_of_tawjihi")
             mark_branch=tracker.get_slot("mark_of_branch")
@@ -168,7 +177,7 @@ class ActionSubmitExpectedMajor(Action):
             conn.close()
         except mysql.connector.Error as error:
             print("parameterized query failed {}".format(error))
-            dispatcher.utter_message(text="متأسف لقد حدث خطأ أثناء احضار التخصصات ")
+            dispatcher.utter_message(text="متأسف لقد حدث خطأ أثناء احضار التخصصات , في للوقت الحالي يمكنك زيارة الرابط التالي لمعرفة المزيد: https://dar.ppu.edu/ar/programs")
         return[]
 
 class MajorDeatil(Action):
@@ -178,15 +187,19 @@ class MajorDeatil(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         try:
-             
+            conn = mysql.connector.connect(host="localhost",
+                                           port="3306",
+                                           user="root",
+                                           password="",
+                                           database="chatbot_db") 
             mycursors = conn.cursor()
             major_selected = tracker.get_slot("major")
             mycursors.execute("""SELECT * FROM majors where major_name = %s""",(major_selected, ))
             result = list(mycursors.fetchall())
-            dispatcher.utter_message(text = f"تخصص {result[0][2]} : يبلغ سعر الساعة لهذا التخصص {result[0][3]} ديناراً و بإجمالي {result[0][4]} ساعة موزعة على {result[0][5]} سنوات, و يبلغ الحد الادنى لمعدلات القبول لهذا التخصص {result[0][6]} , ويبلغ القسط الأول لهذا التخصص  {result[0][8]} دينار وذلك للطلبة الذين استوفوا شروط التخصص. أما دراسة هذا التخصص على نظام الموازي فيكون سعر الساعة يساوي سعر الساعة الأصلي مضروبا ب2 وكذلك الأمر بالنسبة لقسط الفصل الأول أيضاً")
+            dispatcher.utter_message(text = f"تخصص {result[0][2]} : يبلغ سعر الساعة لهذا التخصص {result[0][3]} ديناراً و بإجمالي {result[0][4]} ساعة  موزعة على  {result[0][5]} سنوات, و يبلغ الحد الادنى لمعدلات القبول لهذا التخصص {result[0][6]} , بالإضافة إلى أن قيمة القسط للفصل الأول تبلغ {result[0][8]} للطلبة الذين استوفوا شروط التسجيل, أما بالنسبة للنظام الموازي فقيمة القسط تبلغ القسط الأصلي مضروبا ب2 ")
             mycursors.close()
             conn.close()
         except mysql.connector.Error as error:
             print("parameterized query failed {}".format(error))
-            dispatcher.utter_message(text="Failed")
+            dispatcher.utter_message(text="حدث خطأ في عملية تجهيز معلومات التخصص المطلوب, أرجو زيارة الرابط التالي: https://dar.ppu.edu/ar/programs")
         return []

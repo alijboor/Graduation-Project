@@ -45,52 +45,6 @@ stories:
   steps:
   - intent: choose_major
   - action: action_major_details
-# - story: general chat
-#   steps:
-#   - intent: arabic_greet
-#   - action: utter_arabic_greet
-#   - intent: pajrot/enrollment_Conditions
-#   - action: utter_pajrot/enrollment_Conditions
-#   - intent: pajrot/enrollment_Conditions
-#   - action: utter_pajrot/enrollment_Conditions
-#   - intent: transfer_to_ppu
-#   - action: utter_transfer_to_ppu
-#   - intent: restart
-#   - action: action_restart
-#   - intent: arabic_greet
-#   - intent: registration
-#   - action: utter_registration
-#   - intent: pajrot/calculate_mark_and_major
-#   - action: utter_pajrot
-#   - intent: pajrot/enrollment_Conditions
-#   - action: utter_pajrot
-#   - intent: registration
-#   - action: utter_registration
-#   - intent: placement_tests
-#   - action: utter_placement_tests
-#   - intent: dploma_tahel
-#   - action: utter_dploma_tahel
-#   - intent: refund_system_for_new_student
-#   - action: utter_refund_system_for_new_student
-#   - intent: Losing_a_seat
-#   - action: utter_Losing_a_seat
-#   - intent: ppu_grants
-#   - action: utter_ppu_grants
-#   - intent: language_study
-#   - action: utter_language_study
-#   - intent: system_study
-#   - action: utter_system_study
-#   - intent: filling_the_application
-#   - action: utter_filling_the_application
-#   - intent: required_documents
-#   - action: utter_required_documents
-#   - intent: parallel_study
-#   - action: utter_parallel_study
-#   - intent: bot_condition
-#   - action: utter_bot_condition
-#   - intent: university_programs
-#   - action: utter_university_programs
-
 - story: Story from Conversation ID 7f897ecb74894a9597e9bccfe9c8244b
   steps:
   - intent: arabic_greet
@@ -133,4 +87,102 @@ stories:
   - action: utter_Losing_a_seat
   - intent: thanks
   - action: utter_thanks
-
+- story: Story from Conversation ID 4d237bce242144adaa3a6a75795ec69d
+  steps:
+  - intent: expected_major
+  - action: expected_major_form
+  - active_loop: expected_major_form
+  - slot_was_set:
+    - requested_slot: branch_of_tawjihi
+  - intent: affirm
+  - action: expected_major_form
+  - slot_was_set:
+    - branch_of_tawjihi: ادبي
+  - slot_was_set:
+    - requested_slot: mark_of_branch
+  - intent: affirm
+  - action: expected_major_form
+  - slot_was_set:
+    - mark_of_branch: 66.0
+  - slot_was_set:
+    - requested_slot: program
+  - intent: university_programs
+  - action: expected_major_form
+  - slot_was_set:
+    - program: بكالوريوس
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_tawjihi_branch_and_mark
+  - intent: choose_major
+    entities:
+    - major: نظم المعلومات
+  - slot_was_set:
+    - major: نظم المعلومات
+  - action: action_major_details
+- story: Story from Conversation ID c7fd212da7da4fc483f407f865482516
+  steps:
+  - intent: arabic_greet
+  - action: utter_arabic_greet
+  - intent: bot_condition
+  - action: utter_bot_condition
+  - intent: admission_policy
+  - action: utter_admission_policy
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - intent: admission_policy
+  - action: utter_admission_policy
+  - intent: thanks
+  - action: utter_thanks
+  - intent: deny
+  - action: action_restart
+- story: Story from Conversation ID 16ded4ca3d794c9fb8588ec89d5a41b4
+  steps:
+  - intent: arabic_morning_greet
+  - action: utter_arabic_morning_greet
+  - intent: ppu_grants
+  - action: utter_ppu_grants
+- story: Story from Conversation ID 4e79a1cfca6b4b399c7660b6215047e0
+  steps:
+  - intent: arabic_greet
+  - action: utter_arabic_greet
+  - intent: bot_condition
+  - action: utter_bot_condition
+- story: Story from Conversation ID 12ad4705ebac4ae5aca28bfe1876aee1
+  steps:
+  - intent: arabic_greet
+  - action: utter_arabic_greet
+  - intent: graduation_plans
+  - action: utter_graduation_plans
+- story: Story from Conversation ID 454a9486ec2e13
+  steps:
+  - intent: graduation_plans
+  - action: utter_graduation_plans
+  - intent: thanks
+  - action: utter_thanks
+  - intent: affirm
+  - intent: expected_major
+  - action: expected_major_form
+  - active_loop: expected_major_form
+  - slot_was_set:
+    - requested_slot: branch_of_tawjihi
+  - slot_was_set:
+    - branch_of_tawjihi: زراعي
+  - slot_was_set:
+    - requested_slot: mark_of_branch
+  - slot_was_set:
+    - mark_of_branch: 91.0
+  - slot_was_set:
+    - requested_slot: program
+  - slot_was_set:
+    - program: بكالوريوس
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_tawjihi_branch_and_mark
+  - intent: choose_major
+    entities:
+    - major: المحاسبة
+  - slot_was_set:
+    - major: المحاسبة
+  - action: action_major_details
