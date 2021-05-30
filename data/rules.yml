@@ -1,5 +1,10 @@
 version: "2.0"
 rules:
+- rule: say hello before chat starts
+  steps:
+  - action: action_session_start
+  - action: action_welcome
+  - action: action_listen
 - rule: Say goodbye anytime the user says goodbye
   steps:
   - intent: goodbye
@@ -31,10 +36,10 @@ rules:
   - intent: graduation_plans
   - action: utter_graduation_plans
 
-- rule: Trigger pajrot conditions
-  steps:
-  - intent: pajrot_enrollment_Conditions
-  - action: utter_pajrot_enrollment_Conditions
+# - rule: Trigger pajrot conditions
+#   steps:
+#   - intent: pajrot_enrollment_Conditions
+#   - action: utter_pajrot_enrollment_Conditions
 - rule: Trigger pajrot mark and major
   steps:
   - intent: pajrot_calculate_mark_and_major

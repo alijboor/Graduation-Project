@@ -42,7 +42,7 @@ class ActionColleges(Action):
                                                        str(d)) + '"}'
                 buttons.append({
                     "title": re.sub("[(',;)]", "", str(d)),
-                    "payload": f"/choose_college{fill_slot}"
+                    "payload": f"/colleges{fill_slot}"
                 })
             dispatcher.utter_message(
                 text=
@@ -85,7 +85,7 @@ class CollegeMajor(Action):
                 })
             dispatcher.utter_message(
                 text=
-                f"هذه هي التخصصات المتوفرة في '{College}' في جامعة بوليتكنك فلسطين \n اذا كنت ترغب بمعرفة المزيد عن تخصص معين اختر من خلال الازرار التالية.",
+                f"هذه هي التخصصات المتوفرة في '{College}' في جامعة بوليتكنك فلسطين \n اذا كنت ترغب بمعرفة المزيد عن تخصص معين اختر من خلال الازرار التالية. ",
                 buttons=buttonss)
             mycursors.close()
             conn.close()

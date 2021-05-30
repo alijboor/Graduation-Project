@@ -37,10 +37,10 @@ stories:
   - action: action_colleges
   - intent: arabic_goodbye
   - action: utter_arabic_goodbye
-- story: ask a college Major
-  steps:
-  - intent: choose_college
-  - action: action_college_major
+# - story: ask a college Major
+#   steps:
+#   - intent: colleges
+#   - action: action_college_major
 - story: ask a Major detail
   steps:
   - intent: choose_major
@@ -185,4 +185,181 @@ stories:
     - major: المحاسبة
   - slot_was_set:
     - major: المحاسبة
+  - action: action_major_details
+- story: Story from Conversation ID 262cca9db4484f96a829a70f4ab72daa
+  steps:
+  - intent: arabic_greet
+  - action: utter_arabic_greet
+  - intent: expected_major
+  - action: expected_major_form
+  - active_loop: expected_major_form
+  - slot_was_set:
+    - requested_slot: branch_of_tawjihi
+  - intent: tawjihi_branch
+  - action: expected_major_form
+  - slot_was_set:
+    - branch_of_tawjihi: علمي
+  - slot_was_set:
+    - requested_slot: mark_of_branch
+  - intent: nlu_fallback
+  - action: expected_major_form
+  - slot_was_set:
+    - mark_of_branch: 61.0
+  - slot_was_set:
+    - requested_slot: program
+  - intent: university_programs
+  - action: expected_major_form
+  - slot_was_set:
+    - program: بكالوريوس
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_tawjihi_branch_and_mark
+- story: Story from Conversation ID e52bf90dd492414083578fe248886832
+  steps:
+  - intent: arabic_greet
+  - action: utter_arabic_greet
+  - intent: expected_major
+  - action: expected_major_form
+  - active_loop: expected_major_form
+  - slot_was_set:
+    - requested_slot: branch_of_tawjihi
+  - intent: tawjihi_branch
+  - action: expected_major_form
+  - slot_was_set:
+    - branch_of_tawjihi: علمي
+  - slot_was_set:
+    - requested_slot: mark_of_branch
+  - intent: nlu_fallback
+  - action: expected_major_form
+  - slot_was_set:
+    - mark_of_branch: 71.0
+  - slot_was_set:
+    - requested_slot: program
+  - intent: university_programs
+  - action: expected_major_form
+  - slot_was_set:
+    - program: بكالوريوس
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_tawjihi_branch_and_mark
+  - intent: choose_major
+    entities:
+    - major: علم الحاسوب
+  - slot_was_set:
+    - major: علم الحاسوب
+  - action: action_major_details
+- story: Story from Conversation ID ebd4a31b6c2748539bae801281e948de
+  steps:
+  - intent: pajrot_calculate_mark_and_major
+  - action: utter_pajrot_calculate_mark_and_major
+  - intent: continue_conversation
+  - action: utter_more_pajrot_calculate_mark_and_major
+- story: Story from Conversation ID 517c811c9e514a6e9430566896f457f4
+  steps:
+  - intent: ppu_grants
+  - action: utter_ppu_grants
+  - intent: continue_conversation
+  - action: utter_more_ppu_grants
+- story: Story from Conversation ID b7acafad07
+  steps:
+  - intent: admission_policy
+  - action: utter_admission_policy
+  - intent: pajrot_enrollment_Conditions
+  - action: utter_more_pajrot_admission_policy
+  - action: utter_pajrot_enrollment_Conditions
+- story: Story from Conversation ID 03c57daba56841a89a2d169296dc1f74
+  steps:
+  - intent: admission_policy
+  - action: utter_admission_policy
+  - intent: continue_conversation
+  - action: utter_more_admission_policy
+- story: Story from Conversation ID 4d13b6573dc046b0b5808f8e9d12cea3
+  steps:
+  - intent: admission_policy
+  - action: utter_admission_policy
+  - intent: continue_pajrot
+  - action: utter_pajrot_enrollment_Conditions
+  - action: utter_more_pajrot_calculate_mark_and_major
+- story: Story from Conversation ID 0294f09f126b49f9a1ea397b0979a545
+  steps:
+  - action: utter_continue_chat
+  - intent: colleges
+  - action: action_colleges
+  - intent: colleges
+    entities:
+    - colleges: كلية تكنولوجيا المعلومات وهندسة الحاسوب
+  - slot_was_set:
+    - colleges: كلية تكنولوجيا المعلومات وهندسة الحاسوب
+  - action: action_college_major
+  - intent: choose_major
+    entities:
+    - major: علم الحاسوب
+  - slot_was_set:
+    - colleges: كلية تكنولوجيا المعلومات وهندسة الحاسوب
+  - slot_was_set:
+    - major: علم الحاسوب
+  - action: action_major_details
+- story: Story from Conversation ID 5a5930a4823d481091c48572ee5730de
+  steps:
+  - action: utter_continue_chat
+  - intent: refund_system_for_new_student
+  - action: utter_refund_system_for_new_student
+- story: Story from Conversation ID a6da100d904244dfad425c7379869ed0
+  steps:
+  - intent: arabic_greet
+  - action: utter_arabic_greet
+  - intent: bot_condition
+  - action: utter_bot_condition
+  - intent: expected_major
+  - action: expected_major_form
+  - active_loop: expected_major_form
+  - slot_was_set:
+    - requested_slot: branch_of_tawjihi
+  - slot_was_set:
+    - branch_of_tawjihi: علمي
+  - slot_was_set:
+    - requested_slot: mark_of_branch
+  - slot_was_set:
+    - mark_of_branch: 77.7
+  - slot_was_set:
+    - requested_slot: program
+  - slot_was_set:
+    - program: بكالوريوس
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_tawjihi_branch_and_mark
+  - intent: choose_major
+    entities:
+    - major: علم الحاسوب
+  - slot_was_set:
+    - major: علم الحاسوب
+  - action: action_major_details
+- story: Story from Conversation ID 7698cd2d27df4ed29b350a1b4ecaab64
+  steps:
+  - intent: admission_policy
+  - action: utter_admission_policy
+  - intent: continue_conversation
+  - action: utter_more_admission_policy
+- story: Story from Conversation ID c6251a55b4304be891188b14cc6f3743
+  steps:
+  - intent: arabic_greet
+  - action: utter_arabic_greet
+  - intent: colleges
+  - action: action_colleges
+  - intent: choose_college
+    entities:
+    - colleges: كلية الدراسات العليا
+  - slot_was_set:
+    - colleges: كلية الدراسات العليا
+  - action: action_college_major
+  - intent: choose_major
+    entities:
+    - major: ماجستير هندسة الميكاترونيكا
+  - slot_was_set:
+    - colleges: كلية الدراسات العليا
+  - slot_was_set:
+    - major: ماجستير هندسة الميكاترونيكا
   - action: action_major_details
