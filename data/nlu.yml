@@ -333,6 +333,13 @@ nlu:
     - مزيد
     - مزيد من المعلومات
     - المزيد لطلبة الدول الاخرى
+- intent: branch_mark
+  examples: |
+    - 59.6
+    - 88.2
+    - 91.5
+    - 76
+    - 65.4
 - intent: continue_pajrot
   examples: |
     - المزيد

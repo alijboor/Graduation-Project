@@ -5,6 +5,8 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: false
 intents:
+- branch_mark:
+    use_entities: true
 - graduation_plans:
     use_entities: true
 - required_documents:
